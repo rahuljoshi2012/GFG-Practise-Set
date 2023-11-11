@@ -1,0 +1,13 @@
+class Solution {
+    int print2largest(int arr[], int n) {
+        Arrays.sort(arr);
+        int max=arr[n-1],smax=-1,i;
+        for(i=n-2;i>=0;i--){
+            if(arr[i]<max){
+                smax=arr[i];
+                break;
+            }
+        }
+        return smax;
+    }
+}
