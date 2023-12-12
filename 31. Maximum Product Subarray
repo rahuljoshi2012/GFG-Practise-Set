@@ -1,0 +1,17 @@
+class Solution {
+    // Function to find maximum product subarray
+    long maxProduct(int[] arr, int n) {
+        // code here
+        long  maxi = Integer.MIN_VALUE;
+        for(int i = 0; i<n; i++)
+        {
+            long product = 1;
+            for(int j = i; j<n; j++)
+            {
+                product *= arr[j];
+                maxi = Math.max(maxi,product);
+            }
+        }
+        return maxi;
+    }
+}
