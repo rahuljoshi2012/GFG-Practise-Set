@@ -1,0 +1,16 @@
+class Solution
+{
+    static int missingNumber(int arr[], int size)
+    {
+        // Your code here
+        boolean[] A = new boolean[1000001];
+        for(int i:arr){
+            if(i>0) A[i]=true;
+        }
+        
+        int i=0;
+        while(A[++i]){}
+        
+        return i;
+    }
+}
