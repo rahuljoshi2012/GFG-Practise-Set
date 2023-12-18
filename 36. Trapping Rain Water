@@ -1,0 +1,36 @@
+class Solution{
+    static long trappingWater(int arr[], int n) { 
+        int left = 0;
+        int right = n - 1;
+        
+        int i = 0;
+        long total = 0;
+        
+        while(left < right){
+            if(arr[left] < arr[right]){
+                 i = left + 1;
+                while(arr[i] < arr[left]){
+                    
+                    total = total + (long) (arr[left] - arr[i]);
+                    i++;
+                }
+                
+                left = i;
+            }else{
+                
+                  i = right - 1;
+                while(arr[i] < arr[right]){
+                    
+                    total = total + (long) (arr[right] - arr[i]);
+                    i--;
+                }
+                
+                right = i;
+                
+            }
+        }
+        
+        return total;
+    } 
+    
+}
