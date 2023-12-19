@@ -1,0 +1,29 @@
+class Solution
+{
+    static ArrayList<Integer> max_of_subarrays(int arr[], int n, int k) {
+    ArrayList<Integer> ans = new ArrayList<>();
+   Deque<Integer>deque = new ArrayDeque<>();
+      int i = 0, j = 0;
+      while(j<n){
+          int length = j-i+1;
+          if(length <k){
+              while(!deque.isEmpty() && arr[j]> deque.peekLast()){
+            deque.removeLast();
+           }
+             deque.addLast(arr[j]);
+             j++;
+          }else{
+               while(!deque.isEmpty() && arr[j]> deque.peekLast()){
+            deque.removeLast();
+           }
+           
+           deque.addLast(arr[j]);
+           ans.add(deque.peekFirst());
+           if(deque.peekFirst() == arr[i]) deque.removeFirst();
+           i++;
+           j++;
+          }
+      }
+          return ans;
+ }
+}
