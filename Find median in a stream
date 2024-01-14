@@ -1,0 +1,37 @@
+class Solution
+{
+    PriorityQueue<Integer> right = new PriorityQueue<>(); // min heap
+    PriorityQueue<Integer> left = new PriorityQueue<>( Comparator.reverseOrder()  ); // max heap
+    public  void insertHeap(int x)
+    {
+        if( left.isEmpty() || x < left.element() ){
+            
+            left.add( x);
+            
+        }else{
+            
+            right.add(x);
+        }
+        balanceHeaps();
+    }
+    public void balanceHeaps()
+    {
+       int diff = left.size() - right.size();
+       switch(diff){
+        case -1: left.add(right.poll());
+                 break;
+        case 2: right.add( left.poll()); 
+                 break;
+        default: break;  
+       }
+    }
+    public  double getMedian()
+    {
+         int totalSize = left.size() +  right.size();
+        if (totalSize % 2 != 0) {
+            return left.peek();
+        } else {
+             return (left.peek() + right.peek()) / 2.0;
+        }      
+    } 
+}
