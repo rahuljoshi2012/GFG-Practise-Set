@@ -1,0 +1,49 @@
+class Solution 
+{
+    public static int numberOfStudent(int pages[],int n,int capacity){
+        int student_count = 1;
+        int curr_capacity = pages[0];
+        
+        for(int i=1;i<n;i++){
+            curr_capacity+=pages[i];
+            if(curr_capacity>capacity){
+                student_count+=1;
+                
+                curr_capacity = pages[i];
+                
+            }
+        }
+        
+        return student_count;
+    }
+    
+    //Function to find minimum number of pages.
+    public static int findPages(int[]pages,int n,int studs)
+    {
+        //Your code here
+        int start = Arrays.stream(pages).max().orElseThrow();
+        int end = Arrays.stream(pages).sum();
+        if(n<studs){
+            return -1;
+        }
+        if(numberOfStudent(pages,n,start)<=studs){
+            return start;
+        }
+
+        while(start<end){
+            if(start==end-1){
+                break;
+            }
+
+            int mid = start + (end-start)/2;
+            int curr_student = numberOfStudent(pages,n,mid);
+            if(curr_student<=studs){
+                end = mid;
+            }
+            else{
+                start = mid;
+            }
+        }
+        return start+1;
+    }
+}
