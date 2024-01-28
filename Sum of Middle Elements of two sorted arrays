@@ -1,0 +1,15 @@
+class Solution {
+    int findMidSum(int[] ar1, int[] ar2, int n) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int i =0;
+        int j =0;
+        while(i < n && j < n ){
+            if(ar1[i] < ar2[j]){
+                list.add(ar1[i++]);
+            }else list.add(ar2[j++]);
+        }
+        while(i < n)list.add(ar1[i++]);
+        while(j < n)list.add(ar2[j++]);
+        return list.get(n-1)+list.get(n);
+    }
+}
