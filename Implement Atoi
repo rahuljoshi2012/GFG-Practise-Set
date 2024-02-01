@@ -1,0 +1,16 @@
+class Solution
+{
+    int atoi(String str) {
+    int f=1; 
+    if(Character.isDigit(str.charAt(0)) || str.charAt(0)=='_'){
+        f=1;
+    }
+    for(int i=1;i<str.length();i++){
+        if(!Character.isDigit(str.charAt(i))){
+            f=0;
+            break;
+        }
+    }
+    return (f==1)?Integer.parseInt(str):-1;
+    }
+}
