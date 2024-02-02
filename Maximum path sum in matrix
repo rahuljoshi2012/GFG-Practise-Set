@@ -1,0 +1,22 @@
+class Solution{
+    static int maximumPath(int N, int matrix[][]){
+        
+        int[] prev= new int[N];
+        int res=-1;
+        
+        for(int j=0;j<N;j++) prev[j]= matrix[N-1][j];    // storing bottommost                                                  
+        for(int i=N-2;i>=0;i--){
+            
+            int[] curr = new int[N];
+            for(int j=0;j<N;j++){
+                int maxVal= Math.max((j==0 ? 0 : prev[j-1]), Math.max(prev[j],(j==N-1 ? 0 :prev[j+1])));
+                curr[j] = matrix[i][j]+maxVal;
+            }
+            prev=curr;
+        }
+        
+        for(int i=0;i<N;i++) res= Math.max(res,prev[i]);
+        
+        return res;
+    }
+}
