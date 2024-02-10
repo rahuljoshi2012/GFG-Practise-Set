@@ -1,0 +1,45 @@
+class Solution
+{
+    static boolean visited[][];
+    public String[] wordBoggle(char board[][], String[] dictionary)
+    {
+        
+        Set<String> al=new HashSet<>();
+        visited = new boolean[board.length][board[0].length];
+        for(int i = 0;i<dictionary.length;i++){
+        for(int row = 0;row<board.length;row++){
+            for(int col = 0;col<board[0].length;col++){
+                if(board[row][col] == dictionary[i].charAt(0)){
+                    if(wordSearch(dictionary[i],board,row,col,0)){
+                        al.add(dictionary[i]);
+                    }
+                }
+            }
+        }
+        
+        }
+         String[] arr = new String[al.size()];
+        arr = al.toArray(arr);
+        return arr;
+    }
+    
+    public boolean wordSearch(String word,char[][] board,int row,int col,int position){
+        if(position == word.length())
+            return true;
+
+        if(row < 0 || col < 0 || row>=board.length ||
+                col >= board[0].length ||
+                board[row][col] != word.charAt(position) || visited[row][col]){
+            return false;
+        }
+         visited[row][col] = true;
+       if(wordSearch(word,board,row,col-1,position+1) || wordSearch(word,board,row,col+1,position+1) ||
+                wordSearch(word,board,row-1,col,position+1)||wordSearch(word,board,row+1,col,position+1)||
+                wordSearch(word,board,row-1,col-1,position+1)||wordSearch(word,board,row-1,col+1,position+1)||
+                wordSearch(word,board,row+1,col-1,position+1)||wordSearch(word,board,row+1,col+1,position+1)){
+                visited[row][col] = false;
+            return true;}
+        visited[row][col] = false;
+        return false;
+    }
+}
