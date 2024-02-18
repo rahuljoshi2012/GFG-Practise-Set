@@ -1,0 +1,22 @@
+class Solution{
+    static boolean findsum(int arr[],int n)
+    {
+    int sum = 0;
+    boolean p  = false; 
+    HashSet<Integer>fist  = new HashSet<>();
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        if(sum==0||fist.contains(sum)){
+            p = true;
+        } else {
+            fist.add(sum);
+        }
+        
+    }
+    if(p==true){
+        return true ; 
+    }else{
+        return false ;
+    }
+    }
+}
