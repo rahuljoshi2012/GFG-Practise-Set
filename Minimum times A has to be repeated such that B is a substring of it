@@ -1,0 +1,19 @@
+class Solution {
+    static int minRepeats(String A, String B) {
+        // code here
+        
+        String ans = A;
+        for(int i=0;i<1000;i++)
+        {
+            if(ans.contains(B))
+            return i+1;
+            else
+            ans=ans+A;
+            
+            if(ans.length()>(A.length()*B.length()))
+            break;
+        }
+        
+        return -1;
+    }
+};
