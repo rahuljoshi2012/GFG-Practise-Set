@@ -1,0 +1,12 @@
+class Solution
+{
+  public int minAmount(int A[] , int N)
+    {
+        int dp[]=new int[N];
+        dp[0]=A[0];
+        dp[1]=A[1];
+        for(int i=2;i<N;i++)
+            dp[i]=Math.min(dp[i-2],dp[i-1])+A[i];
+        return Math.min(dp[N-1],dp[N-2]);
+    }
+}
