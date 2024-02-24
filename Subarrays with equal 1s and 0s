@@ -1,0 +1,21 @@
+class Solution
+{
+    static int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+        Map<Integer,Integer> map = new HashMap<>();
+        map.put(0,1);
+        int sum = 0;
+        int count = 0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==1)
+                sum += arr[i];
+            else
+                sum += -1;
+            if(map.containsKey(sum)){
+                count+=map.get(sum);
+            }
+            map.put(sum,map.getOrDefault(sum,0)+1);
+        }
+        return count;
+    }
+}
