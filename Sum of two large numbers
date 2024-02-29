@@ -1,0 +1,18 @@
+class Solution {
+    String findSum(String X, String Y) {
+        StringBuilder str=new StringBuilder();
+        int carry=0;
+        int i=X.length()-1,j=Y.length()-1;
+        while(i>=0 || j>=0 || carry>0){
+            int dig1=i>=0 ? X.charAt(i--)-'0':0;
+            int dig2=j>=0 ? Y.charAt(j--)-'0':0;
+            int sum=dig1+dig2+carry;
+            carry=sum/10;
+            str.insert(0,sum%10);
+        }
+          while (str.length() > 1 && str.charAt(0) == '0') {
+            str.deleteCharAt(0);
+        }
+        return str.toString();
+    }
+}
